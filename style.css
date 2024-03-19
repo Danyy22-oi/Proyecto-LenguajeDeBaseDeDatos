@@ -1,0 +1,466 @@
+body {
+    background-color: rgb(255, 255, 255);
+    color: white; /* Cambia el color del texto a blanco para mayor visibilidad */
+}
+body {
+    text-align: center; /* Centra el contenido del body */
+}
+
+h1 {
+    margin-top: 50px; /* Añade un margen superior para separar el título del borde superior de la ventana */
+}
+/* Estilos para los botones */
+input[type="submit"] {
+    background-color: #1206eb; /* Color de fondo verde */
+    color: white; /* Color del texto blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 15px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+}
+
+/* Estilos al pasar el mouse por encima del botón */
+input[type="submit"]:hover {
+    background-color: #45a049; /* Cambia el color de fondo al verde más oscuro */
+}
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255); /* Fondo blanco */
+    padding-top: 20px;
+   
+}
+
+.sidebar .usuario {
+    padding: 10px;
+    text-align: center;
+    background-color: #95c5f7; /* Color diferente para el usuario */
+    color: white;
+    
+   
+}
+
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+   
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+  
+}
+
+.sidebar  a {
+    text-decoration: none;
+    color: black; /* Color del texto negro */
+    display: block;
+    text-decoration: none; /* Elimina el subrayado de los enlaces dentro de .informacion-usuario */
+}
+
+.sidebar ul li a:hover {
+    background-color: #257bb4; /* Cambio de color al pasar el ratón */
+}
+.sidebar .usuario img {
+    width: 50px; /* Tamaño de la imagen */
+    height: 50px;
+    border-radius: 50%; /* Para hacer la imagen redonda */
+    margin-right: 10px; /* Espacio entre la imagen y el texto del usuario */
+}
+.sidebar .usuario .flecha {
+    width: 20px; /* Ancho de la imagen de la flecha */
+    height: 20px; /* Altura de la imagen de la flecha */
+    margin-left: 10px; /* Espacio entre la imagen de perfil y la imagen de la flecha */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la flecha */
+}
+
+.contenedor {
+    display: flex; /* Distribución flexible */
+    justify-content: center; /* Centra los elementos horizontalmente */
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-gap: 50px; /* Espacio entre botones */
+}
+
+button {
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 15px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.icono {
+    width: 40px; /* Ancho de la imagen */
+    height: 40px; /* Alto de la imagen */
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.clientes {
+    background-color: #2900f383; /* Color de fondo para clientes */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.proveedores {
+    background-color: #1206eb; /* Color de fondo para proveedores */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.productos {
+    background-color: #fa008383; /* Color de fondo para productos */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.existencia-vendida {
+    background-color: #00fa8383; /* Color de fondo para existencia vendida */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.existencia-actual {
+    background-color: #ff0000bd; /* Color de fondo para existencia actual */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.importe-vendido {
+    background-color: #96b50883; /* Color de fondo para importe vendido */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.importe-pagado {
+    background-color: #03443983; /* Color de fondo para importe pagado */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.beneficio-bruto {
+    background-color: #fa830083; /* Color de fondo para beneficio bruto */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+
+.beneficio-neto {
+    background-color: #eb0da883; /* Color de fondo para beneficio neto */
+    color: white; /* Texto blanco */
+    width: 100%; /* Ancho completo */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Borde sin estilo */
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+    margin: 5px; /* Margen entre los botones */
+    display: flex; /* Distribución de elementos flexibles */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.botones a {
+    text-decoration: none; /* Elimina el subrayado de los enlaces dentro de los botones */
+    color: inherit; /* Hereda el color del texto definido en los estilos de los botones */
+}
+/* Estilos para la tabla de clientes */
+.clientes-table {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clientes-table h2 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.clientes-table table {
+    width: 55%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clientes-table th, .clientes-table td {
+    padding: 8px;
+    border: 1px solid #8299ff;
+    text-align: right; /* Corregido 'rigth' a 'right' */
+}
+
+.clientes-table th {
+    background-color: #1946f8;
+}
+
+.clientes-table tbody tr:nth-child(even) {
+    background-color: #97a9fa;
+}
+/* Estilos para el contenedor de productos */
+.productos-container {
+    margin-top: 8px;
+    width: 50%;
+    margin: 0 auto; /* Centra horizontalmente el contenido */
+    text-align: center; /* Centra el botón "Agregar Producto" */
+}
+
+
+.productos-table h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.productos-table table {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.productos-table th, .productos-table td {
+    padding: 8px;
+    border: 1px solid #344d55;
+    text-align: left;
+}
+
+.productos-table th {
+    background-color: #c1bbe9;
+}
+
+.productos-table tbody tr:nth-child(even) {
+    background-color: #848383;
+}
+
+.agregar-producto {
+    background-color: #4CAF50;
+    color: rgb(15, 15, 15);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.agregar-producto:hover {
+    background-color: #45a049;
+}
+
+.editar, .eliminar {
+    background-color: #3200f8;
+    color: rgb(3, 3, 3);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+    width: 80%;
+}
+
+.editar:hover, .eliminar:hover {
+    background-color: #da190b;
+}
+
+.productos-table tbody tr:nth-child(even) {
+    background-color: #97b3f8; /* Color de fondo para filas pares */
+}
+
+.productos-table tbody tr:nth-child(odd) {
+    background-color: #97b3f8; /* Color de fondo para filas impares */
+}
+.proveedores-container {
+    margin-top: 8px;
+    width: 50%;
+    margin: 0 auto; /* Centra horizontalmente el contenido */
+    text-align: center; /* Centra el título de la tabla */
+}
+
+.proveedores-table h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.proveedores-table table {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.proveedores-table th, .proveedores-table td {
+    padding: 8px;
+    border: 1px solid #344d55;
+    text-align: left;
+}
+
+.proveedores-table th {
+    background-color: #c1bbe9;
+}
+
+.proveedores-table tbody tr:nth-child(even) {
+    background-color: #97b3f8; /* Color de fondo para filas pares */
+}
+
+.proveedores-table tbody tr:nth-child(odd) {
+    background-color: #97b3f8; /* Color de fondo para filas impares */
+}
+
+.editar, .eliminar {
+    background-color: #3200f8;
+    color: rgb(3, 3, 3);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+    width: 80%;
+}
+
+.editar:hover, .eliminar:hover {
+    background-color: #da190b;
+}
+.clientes-container {
+    text-align: center;
+    margin-top: 20px;
+    color:#1206eb;
+}
+
+.agregar-producto-nuevo {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px; /* Ajusta el tamaño del padding */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px; /* Ajusta el tamaño de la fuente */
+    display: inline-block; /* Hace que el enlace sea un bloque */
+    text-decoration: none; /* Elimina la subrayado del enlace */
+}
+
+.agregar-producto-nuevo:hover {
+    background-color: #45a049;
+}
+.agregar-producto-container {
+    width: 50%;
+    margin: 20px auto;
+    background-color: #3a54ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.agregar-producto-form {
+    margin-top: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#imagen {
+    height: 100px; /* Ajusta la altura del campo de entrada de imagen */
+}
+
+
+.submit-button {
+    background-color: #4CAF50;
+    color: rgb(253, 253, 253);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+
+
