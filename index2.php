@@ -43,8 +43,8 @@
                 <img src="imagenes/sticker-png-login-icon-system-administrator-user-user-profile-icon-design-avatar-face-head.png"
                     alt="Proveedores" class="icono"> Proveedores
             </a>
-            <a href="productos.php" class="productos">
-                <img src="imagenes/1554591.png" alt="Productos" class="icono"> Productos
+            <a href="productosCrud.php" class="productosCrud.php">
+            <img src="imagenes/1554591.png" alt="Gestión de Productos" class="icono"> Gestión de Productos
             </a>
             <a href="existencia_vendida.php" class="existencia-vendida">
                 <img src="imagenes/existenciavendida.png" alt="Existencia Vendida" class="icono"> Existencia Vendida
