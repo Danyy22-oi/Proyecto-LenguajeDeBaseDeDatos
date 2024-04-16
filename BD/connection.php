@@ -11,19 +11,6 @@ if (!$conn) {
     echo "Error de conexión: " . $error['message'];
 } else {
     echo "Conexión exitosa a la base de datos Oracle <br>";
-
-    // Consulta de prueba
-    $sql = "SELECT * FROM EMPLOYEES WHERE ROWNUM <= 10"; // Cambia 'tu_tabla' por el nombre de tu tabla
-
-    // Ejecutar la consulta
-    $stmt = oci_parse($conn, $sql);
-    oci_execute($stmt);
-
-    // Mostrar los resultados
-    echo "Resultados de la consulta: <br>";
-    while ($row = oci_fetch_assoc($stmt)) {
-        echo "Columna1: " . $row['EMPLOYEE_ID'] . ", Nombre: " . $row['FIRST_NAME'] . "<br>"; // Corregido 'FIRTS_NAME' a 'FIRST_NAME'
-    }
 }
 
 // Cerrar la conexión

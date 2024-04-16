@@ -11,10 +11,11 @@
 </head>
 
 <body>
-    <h1>CONTROL DE INVENTARIO S&C TECNOLOGIAS</h1>
+   
     <a href="index2.php">
         <img src="imagenes/Black_and_White_Monochrome_Tech_Logo-removebg-preview.png" alt="Ir al Menú"
             style="display:block; margin: 0 auto; width: 120px;">
+            <h1>PRODUCTOS</h1>
  
 
     <div class="sidebar">
@@ -33,67 +34,42 @@
             <li><a href="#">Gestión de Usuarios</a></li>
         </ul>
     </div>
-    <div style="text-align: center; margin-top: 20px;">
-    <a href="productoNuevo.php" class="agregar-producto-nuevo">Agregar Producto Nuevo</a>
+    <div class="container">
+    <?php
+    // Incluir el archivo de funciones
+    require_once "productosCrud.php";
+
+    // Llamar a la función para obtener los productos y mostrarlos en una tabla
+    $productos = obtenerProductos();
+
+    if (!empty($productos)) {
+        echo "<table>";
+        echo "<tr><th>ID_PRDUCTO</th><th>ID_PROVEEDOR</th><th>NOMBRE</th><th>CODIGO</th><th>ACCIONES</th></tr>";
+
+        foreach ($productos as $producto) {
+            echo "<tr>";
+            echo "<td>" . $producto['ID_PRODUCTO'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>" . $producto['ID_PRODUCTO'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>" . $producto['NOMBRE'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>" . $producto['CODIGO'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>";
+            // Botón para editar que redirige a editar_producto.php con el ID del producto como parámetro GET
+    echo "<a href='editarProducto.php?id=" . $producto['ID_PRODUCTO'] . "'><button>Editar</button></a>";
+    
+    // Botón para eliminar que redirige a eliminar_producto.php con el ID del producto como parámetro GET
+    echo "<a href='eliminarProducto.php?id=" . $producto['ID_PRODUCTO'] . "'><button>Eliminar</button></a>"; 
+            echo "</td>";
+            echo "</tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo "No se encontraron productos.";
+    }
+    ?>
 </div>
-</div>
-        <div class="clientes-container">
-    <h2>Productos</h2>
-    <div class="productos-container">
-        <div class="productos-table">
-        
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Codigo</th>
-                        <th>Imagen</th>
-                        <th>Acciones</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Monitor Msi</td>
-                        <td>Msicvk</td>
-                        <td><img src="imagenes/9S6-3CC32H-014-800x800h.jpg.webp" alt="Producto 1" style="width: 100px; height: auto;"></td>
-                        <td>
-                            <button class="editar">Editar</button>
-                            <button class="eliminar">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Teclado Marvo</td>
-                        <td>TMRV12</td>
-                        <td><img src="imagenes/marvo-km400g3-combo-teclado-mouse-gaming.jpg" alt="Producto 2" style="width: 100px; height: auto;"></td>
-                        <td>
-                            <button class="editar">Editar</button>
-                            <button class="eliminar">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mouse Scorpion</td>
-                        <td>MSSco18</td>
-                        <td><img src="imagenes/mouse scorpion.webp" alt="Producto 3" style="width: 100px; height: auto;"></td>
-                        <td>
-                            <button class="editar">Editar</button>
-                            <button class="eliminar">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Headset Gamer Rosa Marvo Hg8936</td>
-                        <td>HGMR66</td>
-                        <td><img src="imagenes/headsetd.webp" alt="Producto 2" style="width: 100px; height: auto;"></td>
-                        <td>
-                            <button class="editar">Editar</button>
-                            <button class="eliminar">Eliminar</button>
-                        </td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+    
 </body>
 
 </html>
