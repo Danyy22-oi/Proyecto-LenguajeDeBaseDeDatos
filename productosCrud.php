@@ -5,7 +5,7 @@ require_once "BD/connection.php";
 // Función para obtener los productos desde la base de datos
 function obtenerProductos() {
     try {
-        $usuario = 'hr';
+        $usuario = 'GRUPO';
         $contraseña = '123';
         $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
 
@@ -16,7 +16,7 @@ function obtenerProductos() {
             echo "Error de conexión: " . $error['message'];
         } else {
             // Conexión exitosa, continuar con la consulta
-            $sql = "SELECT * FROM PRODUCTOSSYC"; // Modifica esta consulta según tu estructura de base de datos
+            $sql = "SELECT * FROM PRODUCTO"; // Modifica esta consulta según tu estructura de base de datos
 
             // Ejecutar la consulta
             $stmt = oci_parse($conn, $sql);
@@ -41,7 +41,7 @@ function obtenerProductos() {
 function agregarProducto($idProveedor, $nombre, $codigo) {
     try {
         // Establecer la conexión con Oracle
-        $usuario = 'hr';
+        $usuario = 'GRUPO';
         $contraseña = '123';
         $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
         $conn = oci_connect($usuario, $contraseña, $host);
@@ -52,7 +52,7 @@ function agregarProducto($idProveedor, $nombre, $codigo) {
             return false;
         } else {
             // Insertar el nuevo producto
-            $sql = "INSERT INTO PRODUCTOSSYC (ID_PROVEEDOR, NOMBRE, CODIGO) VALUES (:idProveedor, :nombre, :codigo)";
+            $sql = "INSERT INTO PRODUCTO (ID_PROVEEDOR, NOMBRE, CODIGO) VALUES (:idProveedor, :nombre, :codigo)";
             $stmt = oci_parse($conn, $sql);
             oci_bind_by_name($stmt, ":idProveedor", $idProveedor);
             oci_bind_by_name($stmt, ":nombre", $nombre);
@@ -73,7 +73,7 @@ function agregarProducto($idProveedor, $nombre, $codigo) {
 function eliminarProducto($idProducto) {
     try {
         // Establecer la conexión con Oracle
-        $usuario = 'hr';
+        $usuario = 'GRUPO';
         $contraseña = '123';
         $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
         $conn = oci_connect($usuario, $contraseña, $host);
@@ -84,7 +84,7 @@ function eliminarProducto($idProducto) {
             return false;
         } else {
             // Eliminar el producto
-            $sql = "DELETE FROM PRODUCTOSSYC WHERE ID_PRODUCTO = :idProducto";
+            $sql = "DELETE FROM PRODUCTO WHERE ID_PRODUCTO = :idProducto";
             $stmt = oci_parse($conn, $sql);
             oci_bind_by_name($stmt, ":idProducto", $idProducto);
 
@@ -103,7 +103,7 @@ function eliminarProducto($idProducto) {
 function editarProducto($idProducto, $idProveedor, $nombre, $codigo) {
     try {
         // Establecer la conexión con Oracle
-        $usuario = 'hr';
+        $usuario = 'GRUPO';
         $contraseña = '123';
         $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
         $conn = oci_connect($usuario, $contraseña, $host);
@@ -114,7 +114,7 @@ function editarProducto($idProducto, $idProveedor, $nombre, $codigo) {
             return false;
         } else {
             // Editar el producto
-            $sql = "UPDATE PRODUCTOSSYC SET ID_PROVEEDOR = :idProveedor, NOMBRE = :nombre, CODIGO = :codigo WHERE ID_PRODUCTO = :idProducto";
+            $sql = "UPDATE PRODUCTOS SET ID_PROVEEDOR = :idProveedor, NOMBRE = :nombre, CODIGO = :codigo WHERE ID_PRODUCTO = :idProducto";
             $stmt = oci_parse($conn, $sql);
             oci_bind_by_name($stmt, ":idProducto", $idProducto);
             oci_bind_by_name($stmt, ":idProveedor", $idProveedor);
