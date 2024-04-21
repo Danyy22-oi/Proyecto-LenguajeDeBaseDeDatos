@@ -1,4 +1,25 @@
 {
     "liveServer.settings.port": 5501,
-    "oracledevtools.connections": []
+    "oracledevtools.connections": [
+        {
+            "authenticationType": 2,
+            "dBAPrivilege": "None",
+            "userID": "HR",
+            "passwordSaved": false,
+            "dataSource": "localhost:1521/orcl",
+            "connectionType": 2,
+            "databaseHostName": "localhost",
+            "databasePortNumber": "1521",
+            "databaseServiceName": "orcl",
+            "tnsAdmin": "C:\\Users\\danny\\Oracle\\network\\admin",
+            "name": "HR.orcl",
+            "color": "none",
+            "currentSchema": "",
+            "addSettingsScopeToConnectionName": true,
+            "addCurrentSchemaToConnectionName": true,
+            "filters": [],
+            "useCompatibleNamesDirectoryPath": true
+        }
+    ],
+    "oracledevtools.defaultConnection": "HR.orcl"
 }
