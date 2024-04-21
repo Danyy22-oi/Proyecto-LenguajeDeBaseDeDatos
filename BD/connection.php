@@ -13,7 +13,5 @@ if (!$conn) {
 } else {
     echo "Conexión exitosa a la base de datos Oracle <br>";
 }
-//
-// Cerrar la conexión
-oci_close($conn);
+
 ?>

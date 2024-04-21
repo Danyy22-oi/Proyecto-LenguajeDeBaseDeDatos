@@ -1,11 +1,10 @@
-<?php
 
+<?php
 require_once "BD/connection.php";
 
 // Función para obtener los productos desde la base de datos
 function obtenerProductos() {
-    try {
-        $usuario = 'GRUPO';
+    try {$usuario = 'GRUPO';
         $contraseña = '123';
         $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
 
@@ -22,20 +21,24 @@ function obtenerProductos() {
             $stmt = oci_parse($conn, $sql);
             oci_execute($stmt);
 
-            $productos = array();
+            $producto = array();
             while ($row = oci_fetch_assoc($stmt)) {
-                $productos[] = $row;
+                $producto[] = $row;
             }
 
             oci_close($conn); // Cerrar la conexión
 
-            return $productos;
+            // Imprimir los resultados para depuración
+            print_r($producto);
+
+            return $producto;
         }
     } catch (\Throwable $th) {
         echo $th;
         return array();
     }
 }
+
 
 // Función para agregar un producto a la base de datos
 function agregarProducto($idProveedor, $nombre, $codigo) {
@@ -69,6 +72,10 @@ function agregarProducto($idProveedor, $nombre, $codigo) {
     }
 }
 
+
+
+
+
 // Función para eliminar un producto de la base de datos
 function eliminarProducto($idProducto) {
     try {
@@ -99,6 +106,9 @@ function eliminarProducto($idProducto) {
     }
 }
 
+
+
+
 // Función para editar un producto en la base de datos
 function editarProducto($idProducto, $idProveedor, $nombre, $codigo) {
     try {
@@ -114,7 +124,7 @@ function editarProducto($idProducto, $idProveedor, $nombre, $codigo) {
             return false;
         } else {
             // Editar el producto
-            $sql = "UPDATE PRODUCTOS SET ID_PROVEEDOR = :idProveedor, NOMBRE = :nombre, CODIGO = :codigo WHERE ID_PRODUCTO = :idProducto";
+            $sql = "UPDATE PRODUCTO SET ID_PROVEEDOR = :idProveedor, NOMBRE = :nombre, CODIGO = :codigo WHERE ID_PRODUCTO = :idProducto";
             $stmt = oci_parse($conn, $sql);
             oci_bind_by_name($stmt, ":idProducto", $idProducto);
             oci_bind_by_name($stmt, ":idProveedor", $idProveedor);
@@ -131,9 +141,5 @@ function editarProducto($idProducto, $idProveedor, $nombre, $codigo) {
         return false;
     }
 }
-?>
-
-
-
 
 ?>
