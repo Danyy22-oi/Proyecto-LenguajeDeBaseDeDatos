@@ -1,7 +1,7 @@
 <?php
 // Conecction a la bd de syctecnologia
 $usuario = 'hr';
-$contraseña = '123';
+$contraseña = 'oracle';
 $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
 
 // Intentar establecer la conexión

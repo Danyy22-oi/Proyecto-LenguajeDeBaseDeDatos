@@ -11,10 +11,11 @@
 </head>
 
 <body>
-    <h1>CONTROL DE INVENTARIO S&C TECNOLOGIAS</h1>
+   
     <a href="index2.php">
         <img src="imagenes/Black_and_White_Monochrome_Tech_Logo-removebg-preview.png" alt="Ir al Menú"
             style="display:block; margin: 0 auto; width: 120px;">
+            <h1>PRODUCTOS</h1>
  
 
     <div class="sidebar">
@@ -33,43 +34,42 @@
             <li><a href="#">Gestión de Usuarios</a></li>
         </ul>
     </div>
-</div>
-<div class="clientes-container">
-    <h2>Proovedores</h2>
-<div class="proveedores-container">
-    <div class="proveedores-table">
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Imagen</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Proveedor Marvo</td>
-                    <td><img src="imagenes/marvo ñogo.png" alt="Proveedor Marvo" style="width: 100px; height: auto;"></td>
-                    <td>
-                        <button class="editar">Editar</button>
-                        <button class="eliminar">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Proveedor MSI</td>
-                    <td><img src="imagenes/msi logo.png" alt="Proveedor B" style="width: 100px; height: auto;"></td>
-                    <td>
-                        <button class="editar">Editar</button>
-                        <button class="eliminar">Eliminar</button>
-                    </td>
-                </tr>
-                <!-- Agrega más filas según sea necesario -->
-            </tbody>
-        </table>
-    </div>
+    <div class="container">
+    <?php
+    // Incluir el archivo de funciones
+    require_once "productosCrud.php";
+
+    // Llamar a la función para obtener los productos y mostrarlos en una tabla
+    $productos = obtenerProductos();
+
+    if (!empty($productos)) {
+        echo "<table>";
+        echo "<tr><th>ID_PRDUCTO</th><th>ID_PROVEEDOR</th><th>NOMBRE</th><th>CODIGO</th><th>ACCIONES</th></tr>";
+
+        foreach ($productos as $producto) {
+            echo "<tr>";
+            echo "<td>" . $producto['ID_PRODUCTO'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>" . $producto['ID_PRODUCTO'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>" . $producto['NOMBRE'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>" . $producto['CODIGO'] . "</td>"; // Ajusta el nombre de la columna según tu tabla
+            echo "<td>";
+            // Botón para editar que redirige a editar_producto.php con el ID del producto como parámetro GET
+    echo "<a href='editarProducto.php?id=" . $producto['ID_PRODUCTO'] . "'><button>Editar</button></a>";
+    
+    // Botón para eliminar que redirige a eliminar_producto.php con el ID del producto como parámetro GET
+    echo "<a href='eliminarProducto.php?id=" . $producto['ID_PRODUCTO'] . "'><button>Eliminar</button></a>"; 
+            echo "</td>";
+            echo "</tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo "No se encontraron productos.";
+    }
+    ?>
 </div>
 
+    
 </body>
 
 </html>
