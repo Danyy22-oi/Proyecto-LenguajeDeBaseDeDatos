@@ -73,9 +73,6 @@ function agregarProducto($idProveedor, $nombre, $codigo) {
 }
 
 
-
-
-
 // Función para eliminar un producto de la base de datos
 function eliminarProducto($idProducto) {
     try {
@@ -105,6 +102,40 @@ function eliminarProducto($idProducto) {
         return false;
     }
 }
+
+// Función para obtener los detalles de un producto por su ID
+function obtenerIdProducto($id) {
+    $producto = null;
+    try {
+        // Establecer la conexión con Oracle
+        $usuario = 'GRUPO';
+        $contraseña = '123';
+        $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
+        $conn = oci_connect($usuario, $contraseña, $host);
+
+        if (!$conn) {
+            $error = oci_error();
+            echo "Error de conexión: " . $error['message'];
+        } else {
+            // Consultar el producto con el ID proporcionado
+            $sql = "SELECT * FROM PRODUCTO WHERE PRODUCTO_ID = :id";
+            $stmt = oci_parse($conn, $sql);
+            oci_bind_by_name($stmt, ":id", $id);
+            oci_execute($stmt);
+
+            // Obtener el resultado como un array asociativo
+            $producto = oci_fetch_assoc($stmt);
+
+            // Cerrar la conexión
+            oci_close($conn);
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+    }
+
+    return $producto;
+}
+
 
 
 
