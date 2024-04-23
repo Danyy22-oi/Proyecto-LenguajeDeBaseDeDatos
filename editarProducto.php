@@ -35,7 +35,8 @@
         <?php
         // Incluir el encabezado y las funciones necesarias
         require_once "productosCrud.php";
-
+        echo "<a href='guardarinfoproducto.php?id=" . $producto['PRODUCTO_ID'] . "'><button class='miBoton'>Guardar cambios</button></a>";
+       
         // Definir variables para los valores iniciales de los campos
         $producto_id = "";
         $nombre = "";

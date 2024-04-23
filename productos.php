@@ -35,7 +35,7 @@
         <?php
         // Incluir el archivo de funciones
         require_once "productosCrud.php";
-
+        echo "<a href='agregarProducto.php?id=" . $producto['PRODUCTO_ID'] . "'><button class='miBoton'>Agregar Nuevo Producto</button></a>";
         // Llamar a la función para obtener los productos y mostrarlos en una tabla
         $productos = obtenerProductos();
 

@@ -1,4 +1,33 @@
-<!DOCTYPE html>
+<?php
+include_once "functions/autenticado.php";
+
+verificarAutenticacion();
+
+include_once "include/functions/recoge.php";
+
+$errores = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = recogePost("nombre");
+    $categoria = recogePost("categoria");
+    $idProducto=recogePost("idProducto");
+    /* 
+    Aquí puedes realizar la validación de los datos ingresados si es necesario.
+    Por ejemplo, verificar que el nombre no esté vacío, etc.
+    */
+
+    include_once 'productoCrud.php'; // Incluye el archivo que contiene las funciones de CRUD para productos
+    
+    // Llama a la función para agregar un producto
+    if (agregarProducto($idProducto,$nombre, $categoria)) {
+        header("Location: productoAgregadoExitosamente.php");
+        exit();
+    } else {
+        $errores[] = "Error al agregar el producto"; // Puedes personalizar el mensaje de error según necesites
+    }
+}
+
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -12,7 +41,7 @@
 <body>
     <a href="index2.php">
         <img src="imagenes/Black_and_White_Monochrome_Tech_Logo-removebg-preview.png" alt="Ir al Menú" style="display:block; margin: 0 auto; width: 120px;">
-        <h1>PRODUCTOS</h1>
+        <h1>AGREGAR NUEVO PRODUCTO</h1>
     </a>
 
     <div class="sidebar">
@@ -30,40 +59,21 @@
             <li><a href="#">Gestión de Usuarios</a></li>
         </ul>
     </div>
-
     <div class="container">
-        <?php
-        // Incluir el archivo de funciones
-        require_once "productosCrud.php";
+       
+    <form action="agregarProducto.php" method="POST">
+    <label for="nombre" class="blue-text">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre" class="blue-text"><br>
 
-        // Llamar a la función para obtener los productos y mostrarlos en una tabla
-        $productos = obtenerProductos();
-        if (!empty($productos)) {
-            echo "<table>";
-            echo "<tr><th>PRODUCTO_ID</th><th>NOMBRE</th><th>CAT_PRODUCTO_ID</th><th>ACCIONES</th></tr>";
-        
-            foreach ($productos as $producto) {
-                echo "<tr>";
-                echo "<td>" . $producto['PRODUCTO_ID'] . "</td>";
-                echo "<td>" . $producto['NOMBRE'] . "</td>";
-                echo "<td>" . $producto['CAT_PRODUCTO_ID'] . "</td>";
-                echo "<td>";
-                // Botón para editar que redirige a editar_producto.php con el ID del producto como parámetro GET
-                echo "<a href='editarProducto.php?id=" . $producto['PRODUCTO_ID'] . "'><button>Editar</button></a>";
-                // Botón para eliminar que redirige a eliminar_producto.php con el ID del producto como parámetro GET
-                echo "<a href='eliminarProducto.php?id=" . $producto['PRODUCTO_ID'] . "'><button>Eliminar</button></a>";
-                // Botón adicional
-                echo "<a href='otraPagina.php?id=" . $producto['PRODUCTO_ID'] . "'><button>Botón Adicional</button></a>";
-                echo "</td>";
-                echo "</tr>";
-            }
-        
-            echo "</table>";
-        }
-        ?>
-        <!-- Botón para agregar un nuevo producto -->
-        <a href="agregarProducto.php"><button>Agregar Nuevo Producto</button></a>
+    <label for="categoria" class="blue-text">Categoría:</label><br>
+    <input type="text" id="categoria" name="categoria" class="blue-text"><br>
+
+    <!-- Agrega más campos según los datos que quieras recopilar -->
+
+    <input type="submit" value="Guardar Producto">
+</form>
     </div>
+   
 </body>
 
 </html>
