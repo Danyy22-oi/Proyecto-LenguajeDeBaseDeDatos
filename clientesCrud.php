@@ -1,67 +1,144 @@
 <?php
-require_once "productosCrud.php";
+require_once "BD/connection.php";
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    require_once "include/functions/recoge.php";
-    $id = recogeGet("id");
+// Función para obtener los clientes desde la base de datos
+function obtenerClientes()
+{
+    try {
+        $usuario = 'GRUPO';
+        $contraseña = '123';
+        $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
 
-    // Obtener los detalles del producto a editar
-    $producto = obtenerClientePorId($id);
+        // Intentar establecer la conexión
+        $conn = oci_connect($usuario, $contraseña, $host);
+        if (!$conn) {
+            $error = oci_error();
+            echo "Error de conexión: " . $error['message'];
+        } else {
+            // Conexión exitosa, continuar con la consulta
+            $sql = "SELECT * FROM CLIENTE"; // Modifica esta consulta según tu estructura de base de datos
 
-    if ($producto != null) {
-        $id = $producto['Id_Producto'];
-        $nombre = $producto['Nombre'];
-        $descripcion = $producto['Descripcion'];
-        $precio = $producto['Precio'];
-        $cantidad = $producto['Cantidades'];
-        $talla = $producto['Tallas'];
-        $cantidadArray = explode(',', $cantidad);
-        $tallaArray = explode(',', $talla);
-        $imagen = $producto['Imagen'];
-        $Id_Categoria = $producto['Id_Categoria'];
-        $Id_Subcategoria = $producto['Id_Subcategoria'];
-        $Id_Proveedor = $producto['Id_Proveedor'];
-    } else {
-        // Manejar el caso en que no se encuentre el producto
-        // Por ejemplo, redirigir a una página de error o mostrar un mensaje al usuario
+            // Ejecutar la consulta
+            $stmt = oci_parse($conn, $sql);
+            oci_execute($stmt);
+
+            $cliente = array();
+            while ($row = oci_fetch_assoc($stmt)) {
+                $cliente[] = $row;
+            }
+
+            oci_close($conn); // Cerrar la conexión
+
+            // Imprimir los resultados para depuración
+            print_r($cliente);
+
+            return $cliente;
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+        return array();
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require_once "include/functions/recoge.php";
-    // Obtener los datos del formulario
-    $id = recogePost("Id_Producto");
-    $nombre = recogePost("nombre");
-    $descripcion = recogePost("descripcion");
-    $precio = recogePost("precio");
-    $cantidad = isset($_POST['cantidad']) ? array_filter($_POST['cantidad'], 'is_numeric') : array();
-    $talla = isset($_POST['talla']) ? $_POST['talla'] : '';
-    $imagen = recogePost("imagen");
-    $categoria = recogePost("categoria");
-    $subcategoria = recogePost("subcategoria");
-    $proveedor = recogePost("proveedor");
+// Función para eliminar un cliente de la base de datos
+function eliminarCliente($idCliente)
+{
+    try {
+        // Establecer la conexión con Oracle
+        $usuario = 'GRUPO';
+        $contraseña = '123';
+        $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
+        $conn = oci_connect($usuario, $contraseña, $host);
 
-    // Validación de datos, manejo de errores, etc.
+        if (!$conn) {
+            $error = oci_error();
+            echo "Error de conexión: " . $error['message'];
+            return false;
+        } else {
+            // Eliminar el cliente
+            $sql = "DELETE FROM CLIENTE WHERE ID_CLIENTE = :idCliente";
+            $stmt = oci_parse($conn, $sql);
+            oci_bind_by_name($stmt, ":idCliente", $idCliente);
 
-    // Luego, realizar la edición del producto llamando a la función editarProducto()
+            $result = oci_execute($stmt);
+            oci_close($conn); // Cerrar la conexión
 
-    // Redirigir o mostrar un mensaje al usuario según el resultado de la operación
+            return $result;
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+        return false;
+    }
 }
 
-// Aquí empieza la estructura HTML para mostrar el formulario de edición
-include_once 'include/templates/header.php';
-?>
+// Función para obtener los detalles de un cliente por su ID
+function obtenerIdCliente($id)
+{
+    $cliente = null;
+    try {
+        // Establecer la conexión con Oracle
+        $usuario = 'GRUPO';
+        $contraseña = '123';
+        $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
+        $conn = oci_connect($usuario, $contraseña, $host);
 
-<main>
-    <div class="container">
-        <h2>Editar Producto</h2>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <!-- Aquí irían los campos del formulario con los valores predefinidos -->
-            <!-- Se deben agregar los campos necesarios con los valores del producto a editar -->
-        </form>
-    </div>
-</main>
+        if (!$conn) {
+            $error = oci_error();
+            echo "Error de conexión: " . $error['message'];
+        } else {
+            // Consultar el cliente con el ID proporcionado
+            $sql = "SELECT * FROM CLIENTE WHERE CLIENTE_ID = :id";
+            $stmt = oci_parse($conn, $sql);
+            oci_bind_by_name($stmt, ":id", $id);
+            oci_execute($stmt);
 
-<?php
-include_once 'include/templates/footer.php';
+            // Obtener el resultado como un array asociativo
+            $cliente = oci_fetch_assoc($stmt);
+
+            // Cerrar la conexión
+            oci_close($conn);
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+    }
+
+    return $cliente;
+}
+
+
+// Función para editar un cliente en la base de datos
+function editarCliente($idCliente, $nombre, $telefono, $correo, $direccion )
+{
+    try {
+        // Establecer la conexión con Oracle
+        $usuario = 'GRUPO';
+        $contraseña = '123';
+        $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
+        $conn = oci_connect($usuario, $contraseña, $host);
+
+        if (!$conn) {
+            $error = oci_error();
+            echo "Error de conexión: " . $error['message'];
+            return false;
+        } else {
+            // Editar el cliente
+            $sql = "UPDATE CLIENTE SET ID_CLIENTE = :idCliente, NOMBRE = :nombre, CODIGO = :codigo WHERE ID_CLIENTE = :idCliente";
+            $stmt = oci_parse($conn, $sql);
+            oci_bind_by_name($stmt, ":idCliente", $idCliente);
+            oci_bind_by_name($stmt, ":nombre", $nombre);
+            oci_bind_by_name($stmt, ":telefono", $telefono);
+            oci_bind_by_name($stmt, ":correo", $correo);
+            oci_bind_by_name($stmt, ":direccion", $direccion);
+
+            $result = oci_execute($stmt);
+            oci_close($conn); // Cerrar la conexión
+
+            return $result;
+        }
+    } catch (\Throwable $th) {
+        echo $th;
+        return false;
+    }
+}
+    
 ?>
