@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = recogeGet("id");
 
     // Obtener los detalles del producto a editar
-    $producto = obtenerProductoPorId($id);
+    $producto = obtenerClientePorId($id);
 
     if ($producto != null) {
         $id = $producto['Id_Producto'];

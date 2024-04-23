@@ -495,3 +495,22 @@ th {
 table {
     border: 2px solid blue; /* Color del borde de la tabla */
 }
+
+
+ /* Estilos para el botón */
+ .btn-primary {
+    background-color: blue; /* Color normal del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Quitar borde del botón */
+    padding: 10px 15px; /* Ajustar padding del botón */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    border-radius: 20px; /* Hacer el botón ovalado */
+    width: 100px; /* Establecer ancho del botón */
+    height: 100px; /* Establecer altura del botón */
+    font-size: 14px; /* Tamaño del texto del botón */
+}
+
+/* Estilos para el botón cuando se pasa el cursor sobre él */
+.btn-primary:hover {
+    background-color: darkblue; /* Cambiar color del botón cuando se pasa el cursor sobre él */
+}

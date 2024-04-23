@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,16 @@
     <link rel="stylesheet" href="style.css">
     <title>Menú Principal</title>
 </head>
+
 <body>
     <a href="index2.php">
-        <img src="imagenes/Black_and_White_Monochrome_Tech_Logo-removebg-preview.png" alt="Ir al Menú"
-            style="display:block; margin: 0 auto; width: 120px;">
-            <h1>PRODUCTOS</h1>
+        <img src="imagenes/Black_and_White_Monochrome_Tech_Logo-removebg-preview.png" alt="Ir al Menú" style="display:block; margin: 0 auto; width: 120px;">
+        <h1>PRODUCTOS</h1>
     </a>
 
     <div class="sidebar">
         <div class="usuario">
-            <img src="imagenes/sticker-png-login-icon-system-administrator-user-user-profile-icon-design-avatar-face-head.png"
-                alt="Foto de perfil">
+            <img src="imagenes/sticker-png-login-icon-system-administrator-user-user-profile-icon-design-avatar-face-head.png" alt="Foto de perfil">
             <div class="informacion-usuario">
                 <span class="nombre-usuario">Juan Mora Arias</span>
                 <span class="correo-usuario">juaMAA123@gmail.com</span>
@@ -64,4 +64,5 @@
         ?>
     </div>
 </body>
+
 </html>

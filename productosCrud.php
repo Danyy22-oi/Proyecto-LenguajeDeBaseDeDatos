@@ -3,8 +3,10 @@
 require_once "BD/connection.php";
 
 // Función para obtener los productos desde la base de datos
-function obtenerProductos() {
-    try {$usuario = 'GRUPO';
+function obtenerProductos()
+{
+    try {
+        $usuario = 'GRUPO';
         $contraseña = '123';
         $host = 'localhost/orcl24'; // Nombre del host / SID de la base de datos Oracle
 
@@ -41,7 +43,8 @@ function obtenerProductos() {
 
 
 // Función para agregar un producto a la base de datos
-function agregarProducto($idProveedor, $nombre, $codigo) {
+function agregarProducto($idProveedor, $nombre, $codigo)
+{
     try {
         // Establecer la conexión con Oracle
         $usuario = 'GRUPO';
@@ -74,7 +77,8 @@ function agregarProducto($idProveedor, $nombre, $codigo) {
 
 
 // Función para eliminar un producto de la base de datos
-function eliminarProducto($idProducto) {
+function eliminarProducto($idProducto)
+{
     try {
         // Establecer la conexión con Oracle
         $usuario = 'GRUPO';
@@ -104,7 +108,8 @@ function eliminarProducto($idProducto) {
 }
 
 // Función para obtener los detalles de un producto por su ID
-function obtenerIdProducto($id) {
+function obtenerIdProducto($id)
+{
     $producto = null;
     try {
         // Establecer la conexión con Oracle
@@ -141,7 +146,8 @@ function obtenerIdProducto($id) {
 
 
 // Función para editar un producto en la base de datos
-function editarProducto($idProducto, $idProveedor, $nombre, $codigo) {
+function editarProducto($idProducto, $idProveedor, $nombre, $codigo)
+{
     try {
         // Establecer la conexión con Oracle
         $usuario = 'GRUPO';
